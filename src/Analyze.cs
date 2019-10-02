@@ -2,7 +2,6 @@
 using System.IO;
 using System.Text.RegularExpressions;
 
-
 namespace NavCodeReferenceGenerator
 {
 	static public class Analyze
@@ -25,6 +24,11 @@ namespace NavCodeReferenceGenerator
 			string name = Regex.Replace(fileContent[0].Substring(13),@"\d","");
 			
 			Table table = new Table(id, name);
+
+			Console.WriteLine("Id:{0}",table.id);
+			Console.WriteLine("name:{0}",name);
+
+			JsonGenerator.Generate(table);
 		}
 	}
 }
