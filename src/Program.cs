@@ -2,11 +2,11 @@
 
 namespace NavCodeReferenceGenerator
 {
-		class Program
+	class Program
+	{
+		static void Main(string[] args)
 		{
-				static void Main(string[] args)
-				{
-						Console.WriteLine("Hello World!");
-				}
+			Analyze.analyzeFile("ExampleFiles//TAB18.TXT");
 		}
+	}
 }
