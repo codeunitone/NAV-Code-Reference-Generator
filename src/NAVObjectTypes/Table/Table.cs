@@ -1,3 +1,5 @@
+using System;
+
 namespace NavCodeReferenceGenerator
 {
 	public class Table

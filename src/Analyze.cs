@@ -12,6 +12,7 @@ namespace NavCodeReferenceGenerator
 
 			Regex tableRegEx = new Regex("^OBJECT Table\\s\\d[0-9]{0,}");
 
+			// the first line is always Object Type, ID and Name
 			if (tableRegEx.IsMatch(fileContent[0]) == true)
 			{
 				analyzeTable(fileContent);
