@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace NavCodeReferenceGenerator
 {
@@ -26,8 +27,25 @@ namespace NavCodeReferenceGenerator
 			
 			Table table = new Table(id, name);
 
-			Console.WriteLine("Id:{0}",table.id);
-			Console.WriteLine("name:{0}",name);
+			List<Procedure> procedures = new List<Procedure>();
+			List<Variable> globalVariables = new List<Variable>();
+
+			globalVariables.Add(new Variable("DocType","Option"));
+			globalVariables.Add(new Variable("DocNo","code[20]"));
+			globalVariables.Add(new Variable("Customer","Record","18"));
+			table.globalVariables = globalVariables;
+
+			List<Variable> localVariables = new List<Variable>();
+			localVariables.Add(new Variable("ItemNo","code[20]"));
+			localVariables.Add(new Variable("Item","Record","27"));			
+			procedures.Add(new Procedure("Function1") {localVariables = localVariables});
+
+			List<Variable> localVariables = new List<Variable>();
+			localVariables.Add(new Variable("ItemNo","code[20]"));
+			localVariables.Add(new Variable("Item","Record","27"));
+			procedures.Add(new Procedure("Function2") {localVariables = localVariables});
+
+			table.procedures = procedures;
 
 			JsonGenerator.Generate(table);
 		}
