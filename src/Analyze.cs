@@ -28,26 +28,18 @@ namespace NavCodeReferenceGenerator
 			Table table = new Table(id, name);
 
 			List<Procedure> procedures = new List<Procedure>();
-			List<Variable> globalVariables = new List<Variable>();
+			for (int i = 0; i < fileContent.Length; i++)
+			{
+				Regex procedureRegEx = new Regex("PROCEDURE\\s[A-Za-z0-9]{0,}\\@\\d[0-9]{0,}\\(");
+				if (procedureRegEx.IsMatch(fileContent[i]) == true)
+				{
+					procedures.Add(new Procedure(fileContent[i]));
+				}
+				table.procedures = procedures;
+			}
 
-			globalVariables.Add(new Variable("DocType","Option"));
-			globalVariables.Add(new Variable("DocNo","code[20]"));
-			globalVariables.Add(new Variable("Customer","Record","18"));
-			table.globalVariables = globalVariables;
-
-			List<Variable> localVariables = new List<Variable>();
-			localVariables.Add(new Variable("ItemNo","code[20]"));
-			localVariables.Add(new Variable("Item","Record","27"));			
-			procedures.Add(new Procedure("Function1") {localVariables = localVariables});
-
-			List<Variable> localVariables = new List<Variable>();
-			localVariables.Add(new Variable("ItemNo","code[20]"));
-			localVariables.Add(new Variable("Item","Record","27"));
-			procedures.Add(new Procedure("Function2") {localVariables = localVariables});
-
-			table.procedures = procedures;
-
-			JsonGenerator.Generate(table);
+			string fileName = "TAB" + table.id + ".json";
+			JsonGenerator.Generate(table,fileName);
 		}
 	}
 }
