@@ -5,10 +5,10 @@ namespace NavCodeReferenceGenerator
 {
 	public static class JsonGenerator
 	{
-		public static void Generate(object table)
+		public static void Generate(object table,string fileName)
 		{
 			string json = JsonConvert.SerializeObject(table, Formatting.Indented);
-			Console.WriteLine(json);
+			System.IO.File.WriteAllText(fileName, json);
 		}
 	}
 	
