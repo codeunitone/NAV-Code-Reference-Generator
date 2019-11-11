@@ -27,15 +27,16 @@ namespace NavCodeReferenceGenerator
 			
 			Table table = new Table(id, name);
 
-			List<Procedure> procedures = new List<Procedure>();
+			List<Procedure> proceduresList = new List<Procedure>();
 			for (int i = 0; i < fileContent.Length; i++)
 			{
 				Regex procedureRegEx = new Regex("PROCEDURE\\s[A-Za-z0-9]{0,}\\@\\d[0-9]{0,}\\(");
 				if (procedureRegEx.IsMatch(fileContent[i]) == true)
 				{
-					procedures.Add(new Procedure(fileContent[i]));
+					// proceduresList.Add(new Procedure("Function1") {localVariables = localVariables});
+					proceduresList.Add(new Procedure(fileContent[i]));
 				}
-				table.procedures = procedures;
+				table.procedures = proceduresList;
 			}
 
 			string fileName = "TAB" + table.id + ".json";
