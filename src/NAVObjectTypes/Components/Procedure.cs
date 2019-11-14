@@ -10,15 +10,9 @@ namespace NavCodeReferenceGenerator
 		{
 		}
 		
-		public Procedure(string name) 
+		public Procedure(string[] content) 
 		{
-			Regex procedureRegEx = new Regex("PROCEDURE\\s[A-Za-z0-9]{0,}\\@\\d[0-9]{0,}\\(");
-			if (procedureRegEx.IsMatch(name) == true)
-			{
-				name = ExtractProcedureName(name);
-			}
-
-			this.name = name;
+			name = ExtractProcedureName(content[0]);
 		}
 
 		public string name { get; set; }
