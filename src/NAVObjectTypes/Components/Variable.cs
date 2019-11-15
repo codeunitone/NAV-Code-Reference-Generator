@@ -19,6 +19,19 @@ namespace NavCodeReferenceGenerator
 			Console.WriteLine(inputString);
 			// name pos 1 till first @
 			this.name = inputString.Substring(0,inputString.IndexOf("@"));
+
+			// datatype
+			string datatype = inputString.Substring(inputString.IndexOf(":")+2);
+			int nextSpacePos = datatype.IndexOf(" ");
+			Console.WriteLine(nextSpacePos);
+			if (nextSpacePos > -1)
+			{
+				this.datatype = datatype.Substring(0,nextSpacePos).TrimEnd(';');
+			}
+			else
+			{
+				this.datatype = datatype.TrimEnd(';');
+			}
 		}
 	}
 }
