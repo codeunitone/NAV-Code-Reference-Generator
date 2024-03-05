@@ -1,13 +1,9 @@
-﻿using System;
+﻿namespace Nav_Code_Analyzer;
 
-namespace NavCodeReferenceGenerator
+class Program
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
-			Analyze.analyzeFile("ExampleFiles//TAB18.TXT");
-			Analyze.analyzeFile("ExampleFiles//TAB27.TXT");
-		}
-	}
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+    }
 }
